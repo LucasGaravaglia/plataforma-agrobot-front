@@ -20,6 +20,21 @@ export function ProjectPanel() {
               { id: 3, title: "levi" },
               { id: 3, title: "levi" },
               { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
+              { id: 3, title: "levi" },
             ]}
             FirstComponent={NewProject}
             ComponentProp={ViewInfo}

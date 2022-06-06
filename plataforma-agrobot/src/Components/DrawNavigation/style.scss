@@ -13,18 +13,27 @@
     height: 100%;
     list-style: none;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
+
     div {
       width: 100%;
     }
     li {
       width: 100%;
+      min-height: 70px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: flex-start;
       transition: 0.4s;
       padding: 15px;
+    }
+    #li-color {
+      background: #53516f;
+    }
+    #fill-drawNavigation {
+      display: flex;
+      height: 73%;
     }
     li.open {
       #liDiv {
@@ -78,7 +87,10 @@
     #iconStyle {
       fill: #fff;
     }
-
+    li#fill-drawNavigation:hover {
+      background: #3f3d56;
+      cursor: default;
+    }
     li:hover {
       background: #474658;
     }

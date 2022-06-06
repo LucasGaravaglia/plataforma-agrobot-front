@@ -28,6 +28,7 @@ function DrawNavigation() {
             )}
           </div>
         </li>
+        <li id="li-color" className={open ? "open" : "close"}></li>
         <div>
           <li className={open ? "open" : "close"}>
             <MdMenuBook size={30} id="iconStyle" />
@@ -38,11 +39,13 @@ function DrawNavigation() {
             <h3>Perfil</h3>
           </li>
         </div>
+        <li id="fill-drawNavigation" />
         <li className={open ? "open" : "close"}>
           <MdSettings size={30} id="iconStyle" />
           <h3>Configurações</h3>
         </li>
-        <li className={open ? "open" : "close"}>
+
+        <li id="li-color" className={open ? "open" : "close"}>
           <div id="liDiv">
             <h4>Log Out</h4>
             <MdLogout size={30} id="iconStyle" />
