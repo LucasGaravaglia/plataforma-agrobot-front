@@ -25,13 +25,28 @@ div {
   display: flex;
   flex-direction: column;
 }
-#container-box:hover {
+
+#icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 15px;
+}
+#icon:hover {
+  border-radius: 15px;
+  width: 25px;
+  height: 25px;
+  background: #ddd;
+}
+div.hover {
   cursor: pointer;
   #box-top {
     background: #bba632;
   }
   #box-bottom {
-    background: #bbb;
+    background: #ddd;
   }
 }
 div.large {
@@ -86,10 +101,4 @@ div.small {
   flex-direction: row;
   align-items: center;
   padding-top: 3px;
-}
-#icon:hover {
-  background-color: #bbbbbb;
-}
-#icon {
-  width: 16px;
 }

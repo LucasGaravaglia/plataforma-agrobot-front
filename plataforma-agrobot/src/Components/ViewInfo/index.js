@@ -9,9 +9,21 @@ function ViewInfo({
   FirstField = "Delivery",
   SecondField = "20/03/2000",
 }) {
+  const [hoverIcon, setHoverIcon] = useState(false);
   return (
     <>
-      <div id="container-box" className={isLarge ? "large" : "small"}>
+      <div
+        id="container-box"
+        onMouseEnter={() => {
+          setHoverIcon(true);
+        }}
+        onMouseLeave={() => {
+          setHoverIcon(false);
+        }}
+        className={`${hoverIcon ? "hover" : "notHover"} ${
+          isLarge ? "large" : "small"
+        }`}
+      >
         <div id="box-top">
           <h1 id="title-viewInfo">{titleView}</h1>
         </div>
@@ -49,7 +61,16 @@ function ViewInfo({
           )}
           {isLarge ? (
             <div id="content-3">
-              <div id="icon">
+              <div
+                id="icon"
+                onMouseEnter={() => {
+                  setHoverIcon(false);
+                }}
+                onMouseLeave={() => {
+                  setHoverIcon(true);
+                }}
+                className={`${hoverIcon ? "notHover" : "hover"}`}
+              >
                 <MdDownload size={16} color="#1C1B1F" />
               </div>
             </div>

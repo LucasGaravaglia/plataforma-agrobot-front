@@ -1,16 +1,12 @@
-import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import DrawNavigation from "./Components/DrawNavigation";
-import NewProject from "./Components/NewProject";
-import ViewInfo from "./Components/ViewInfo";
-import { ProjectPanel } from "./Pages/ProjectPanel";
+import Home from "./Pages/Home";
 
 function App() {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ProjectPanel />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </div>
