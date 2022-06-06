@@ -1,5 +1,5 @@
 #side-bar {
-  background: #4d4b65;
+  background: #3f3d56;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,9 +35,10 @@
       }
       h2 {
         font-family: "Roboto", sans-serif;
-        font-size: 30px;
+        font-size: 35px;
         color: #fff;
         transition: 0.4s;
+        text-align: center;
       }
       h3 {
         font-family: "Roboto", sans-serif;
