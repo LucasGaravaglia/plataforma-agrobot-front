@@ -4,36 +4,23 @@ import FlatList from "../../Components/FlatList";
 import ViewInfo from "../../Components/ViewInfo";
 import NewProject from "../../Components/NewProject";
 
-export default function ProjectPanel() {
+export default function MissionPanel() {
   return (
     <div id="project-container">
       <div id="panel-container">
-        <h1 id="panel-title">Painel de Projetos</h1>
+        <h1 id="panel-title">Painel de Missões</h1>
         <FlatList
           dataList={[
-            { id: 1, title: "lucas" },
-            { id: 2, title: "caio" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
-            { id: 3, title: "levi" },
+            { isLarge: false, id: 1, title: "lucas" },
+            { isLarge: false, id: 2, title: "caio" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
+            { isLarge: false, id: 3, title: "levi" },
           ]}
           FirstComponent={NewProject}
           ComponentProp={ViewInfo}

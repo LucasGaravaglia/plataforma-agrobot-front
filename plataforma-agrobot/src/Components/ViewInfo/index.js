@@ -49,12 +49,14 @@ function ViewInfo({
           ) : (
             <>
               <div id="content-1">
-                <h2>N° de Pontos: {numericField}</h2>
+                <h2 id="numeric-field-viewInfo">
+                  N° de Pontos: {numericField}
+                </h2>
               </div>
               <div id="content-2">
                 <div id="container-text">
-                  <h3>Ordem: </h3>
-                  <h4>{FirstField}</h4>
+                  <h3 id="first-field-viewInfo">Ordem: </h3>
+                  <h4 id="second-field-viewInfo">{FirstField}</h4>
                 </div>
               </div>
             </>

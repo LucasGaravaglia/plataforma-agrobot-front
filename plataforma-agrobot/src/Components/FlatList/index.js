@@ -7,11 +7,15 @@ function ViewInfo({ dataList, ComponentProp, FirstComponent }) {
     <div id="container-List">
       <ul>
         <li>
-          <FirstComponent />
+          <FirstComponent isLarge={dataList[0].isLarge} />
         </li>
         {dataList.map((Item) => (
           <li>
-            <ComponentProp numericField={Item.id} titleView={Item.title} />
+            <ComponentProp
+              numericField={Item.id}
+              titleView={Item.title}
+              isLarge={Item.isLarge}
+            />
           </li>
         ))}
       </ul>
