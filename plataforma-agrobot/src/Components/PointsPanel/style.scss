@@ -1,0 +1,83 @@
+#project-container {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  #panel-container {
+    background-color: #ebeaea;
+    width: 95%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: scroll;
+    .header-container-pointsPanel {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 1%;
+    }
+    .header-title-pointsPanel {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .button-pointsPanel {
+      width: 200px;
+      height: 40px;
+      background: #d9d9d9;
+      border-radius: 15px;
+      margin-right: 20px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .button-pointsPanel:hover {
+      cursor: pointer;
+      background: #8b8b8b;
+    }
+    .button-content-text {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      color: #000;
+      text-align: center;
+    }
+    #panel-title {
+      font-family: "Roboto", sans-serif;
+      font-size: 24px;
+      color: #000;
+      text-align: center;
+      padding: 15px;
+      padding-top: 5px;
+    }
+    .content-InfoMission {
+      display: flex;
+      width: 90%;
+      height: 80%;
+      justify-content: space-around;
+    }
+    .icon-arrow-back {
+      display: flex;
+      margin: 10px;
+      width: 30px;
+      height: 30px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 15px;
+    }
+    .icon-arrow-back:hover {
+      background-color: #979696;
+    }
+  }
+  #panel-container::-webkit-scrollbar {
+    display: none;
+  }
+}

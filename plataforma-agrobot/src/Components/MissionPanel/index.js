@@ -3,11 +3,15 @@ import "./style.scss";
 import FlatList from "../../Components/FlatList";
 import ViewInfo from "../../Components/ViewInfo";
 import NewProject from "../../Components/NewProject";
+import { MdArrowBack } from "react-icons/md";
 
 export default function MissionPanel() {
   return (
     <div id="project-container">
       <div id="panel-container">
+        <div className="icon-arrow-back">
+          <MdArrowBack size={20} />
+        </div>
         <h1 id="panel-title">Painel de Missões</h1>
         <FlatList
           dataList={[

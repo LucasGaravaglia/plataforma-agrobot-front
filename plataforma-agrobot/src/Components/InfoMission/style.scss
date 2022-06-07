@@ -1,0 +1,70 @@
+div {
+  width: 250px;
+}
+#box-bottom {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    li {
+      display: flex;
+      height: 45px;
+      width: 95%;
+      justify-content: center;
+      align-items: center;
+    }
+    li:nth-child(odd) {
+      background: #fff;
+    }
+    li:nth-child(even) {
+      background: #d9d9d9;
+    }
+  }
+}
+#box-top-InfoMission {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5da42;
+  border-top-left-radius: 15px;
+  // border-top-right-radius: 15px;
+}
+
+#container-box {
+  display: flex;
+  flex-direction: column;
+}
+
+div.hover {
+  cursor: pointer;
+  #box-top {
+    background: #bba632;
+  }
+  #box-bottom {
+    background: #ddd;
+  }
+}
+
+#title-InfoMission {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 220px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #262626;
+  text-align: center;
+}
