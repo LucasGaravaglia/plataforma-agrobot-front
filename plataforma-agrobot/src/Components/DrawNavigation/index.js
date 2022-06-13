@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   MdArrowLeft,
   MdMenuBook,
@@ -8,9 +8,11 @@ import {
   MdMenu,
 } from "react-icons/md";
 import "./style.scss";
+import { TargetScreenContext } from "../../Context/TargetScreen";
 
 function DrawNavigation() {
   const [open, setOpen] = useState(true);
+  const { setCurrentScreen } = useContext(TargetScreenContext);
   const toggleBar = () => {
     setOpen(!open);
     console.log(open);
@@ -30,7 +32,13 @@ function DrawNavigation() {
         </li>
         <li id="li-color" className={open ? "open" : "close"}></li>
         <div>
-          <li className={open ? "open" : "close"}>
+          <li
+            className={open ? "open" : "close"}
+            onClick={() => {
+              setCurrentScreen(0);
+              console.log("aaaaaaaaaaaaaaa");
+            }}
+          >
             <MdMenuBook size={30} id="iconStyle" />
             <h3>Projetos</h3>
           </li>

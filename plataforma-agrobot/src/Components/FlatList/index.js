@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { MdDownload } from "react-icons/md";
 import "./style.scss";
 
 function ViewInfo({ dataList, ComponentProp, FirstComponent }) {

@@ -1,8 +1,17 @@
+.container-hover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.3);
+}
+
 #container-box-addProject {
   display: flex;
   flex-direction: column;
   width: 500px;
-  height: 170px;
+  height: 200px;
   align-items: flex-end;
   #box-top-AddProject {
     height: 70px;
@@ -32,7 +41,7 @@
     align-items: center;
     justify-content: center;
     width: 100px;
-    height: 50px;
+    height: 30px;
     border-radius: 15px;
     background-color: #53516f;
   }
@@ -40,15 +49,31 @@
     cursor: pointer;
     background-color: #7672a7;
   }
+
   #box-bottom {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
     height: 100%;
     width: 100%;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    .content-box-bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: space-evenly;
+      justify-content: space-evenly;
+      width: 100%;
+      height: 80%;
+    }
+    #container-bottom-button {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      justify-content: flex-end;
+      margin-bottom: 5px;
+    }
   }
   #title-AddProject {
     white-space: nowrap;

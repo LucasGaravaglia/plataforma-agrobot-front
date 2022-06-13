@@ -1,10 +1,19 @@
+import { useContext, useEffect } from "react";
 import "../../styles/global.scss";
 import "./style.scss";
 import FlatList from "../../Components/FlatList";
 import ViewInfo from "../../Components/ViewInfo";
 import NewProject from "../../Components/NewProject";
 
+import api from "../../services/api";
+import { DataContext } from "../../Context/DataContext";
+import { TargetScreenContext } from "../../Context/TargetScreen";
+
 export default function ProjectPanel() {
+  const { userData } = useContext(DataContext);
+  const { currentScreen } = useContext(TargetScreenContext);
+
+  useEffect(() => {}, [currentScreen]);
   return (
     <div id="project-container">
       <div id="panel-container">
