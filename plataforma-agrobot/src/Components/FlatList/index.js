@@ -14,7 +14,7 @@ function ViewInfo({ dataList, ComponentProp, FirstComponent, onClick }) {
         {dataList.map((Item) => (
           <li>
             <ComponentProp
-              titleView={Item.title}
+              titleView={Item.titleView}
               isLarge={Item.isLarge}
               numericField={Item.numericField}
               FirstField={Item.FirstField}

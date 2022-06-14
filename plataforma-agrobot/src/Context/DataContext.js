@@ -13,6 +13,7 @@ export function DataContextProvider(props) {
     },
   ]);
   const [user, setUser] = useState(1);
+  const [flag, setFlag] = useState(true);
 
   return (
     <DataContext.Provider
@@ -21,6 +22,8 @@ export function DataContextProvider(props) {
         setUserData,
         user,
         setUser,
+        flag,
+        setFlag,
       }}
     >
       {props.children}

@@ -7,7 +7,7 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
   const [projectName, setProjectName] = useState("");
   const [projectType, setProjectType] = useState("");
   const [projectDate, setProjectDate] = useState("");
-  const { user } = useContext(DataContext);
+  const { user, setFlag } = useContext(DataContext);
 
   const handleChangeProjectName = (event) => {
     setProjectName(event.target.value);
@@ -23,12 +23,16 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
 
   const handleConfirmButton = () => {
     api
-      .post("/projects?populate=*", {
+      .post("projects?populate=*", {
         data: {
           projectName: projectName,
           projectDate: projectDate,
-          // user: user,
+          user: user,
         },
+      })
+      .then((res) => {
+        setFlag((old) => !old);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -71,6 +75,7 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
                 className="input-AddProject"
                 onChange={handleChangeProjectDate}
                 value={projectDate}
+                placeholder="yy-mm-dd"
               />
             </div>
           </div>

@@ -11,7 +11,7 @@ import { DataContext } from "../../Context/DataContext";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 
 export default function ProjectPanel() {
-  const { userData, setUserData, user } = useContext(DataContext);
+  const { userData, setUserData, user, flag } = useContext(DataContext);
   const { currentScreen } = useContext(TargetScreenContext);
   const [overlay, setOverlay] = useState(false);
 
@@ -46,7 +46,7 @@ export default function ProjectPanel() {
       .catch((err) => {
         setUserData("Erro");
       });
-  }, [currentScreen]);
+  }, [currentScreen, flag]);
 
   return (
     <div id="project-container">
