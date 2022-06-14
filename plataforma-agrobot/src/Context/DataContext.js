@@ -3,8 +3,16 @@ import { createContext, useState } from "react";
 export const DataContext = createContext();
 
 export function DataContextProvider(props) {
-  const [userData, setUserData] = useState({});
-  const [user, setUser] = useState("Lucas");
+  const [userData, setUserData] = useState([
+    {
+      titleView: "titleView",
+      numericField: "1",
+      FirstField: "FirstField",
+      SecondField: "SecondField",
+      isLarge: true,
+    },
+  ]);
+  const [user, setUser] = useState(1);
 
   return (
     <DataContext.Provider

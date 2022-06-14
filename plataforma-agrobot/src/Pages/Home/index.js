@@ -15,9 +15,9 @@ export default function Home() {
   const { userData } = useContext(DataContext);
 
   const SelectScreen = () => {
-    if (currentScreen === 0) return <ProjectPanel data={userData} />;
-    if (currentScreen === 1) return <MissionPanel data={userData} />;
-    if (currentScreen === 2) return <PointsPanel data={userData} />;
+    if (currentScreen === 0) return <ProjectPanel />;
+    if (currentScreen === 1) return <MissionPanel />;
+    if (currentScreen === 2) return <PointsPanel />;
   };
   return (
     <div id="container">
