@@ -17,34 +17,44 @@ export default function ProjectPanel() {
 
   useEffect(() => {
     api
-      .get(`/projects?populate=*&filters[user][id][$eq]=${user}`)
+      .get(`/projects=${user}`)
       .then((res) => {
-        for (let i = 0; i < res.data.res.length; i++) {
+        for (let i = 0; i < res.data.length; i++) {
           if (i === 0)
             setUserData([
               {
-                titleView: res.data.res[i].attributes.projectName,
-                numericField: res.data.res[i].attributes.missions.data.length,
-                FirstField: "Delivery",
-                SecondField: res.data.res[i].attributes.projectDate,
+                titleView: res.data[i].projectName,
+                numericField: res.data[i].idMissions.length,
+                FirstField: res.data[i].projectDate,
                 isLarge: true,
+                id: res.data[i].id,
+                missions: res.data[i].idMissions,
               },
             ]);
           else
             setUserData((oldArray) => [
               ...oldArray,
               {
-                titleView: res.data.res[i].attributes.projectName,
-                numericField: res.data.res[i].attributes.missions.data.length,
-                FirstField: "Delivery",
-                SecondField: res.data.res[i].attributes.projectDate,
+                titleView: res.data[i].projectName,
+                numericField: res.data[i].idMissions.length,
+                FirstField: res.data[i].projectDate,
                 isLarge: true,
+                id: res.data[i].id,
+                missions: res.data[i].idMissions,
               },
             ]);
         }
       })
       .catch((err) => {
-        setUserData("Erro");
+        setUserData([
+          {
+            titleView: "Erro ao conectar com backend",
+            numericField: 2,
+            FirstField: String(err),
+            isLarge: false,
+            id: 1,
+          },
+        ]);
       });
   }, [currentScreen, flag]);
 
@@ -57,6 +67,7 @@ export default function ProjectPanel() {
           FirstComponent={NewProject}
           ComponentProp={ViewInfo}
           onClick={() => setOverlay((old) => !old)}
+          screenTarget={1}
         />
         {overlay ? (
           <div className="overlay">

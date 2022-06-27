@@ -71,11 +71,10 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
                 ))}
               </select>
               <input
-                type="text"
+                type="date"
                 className="input-AddProject"
                 onChange={handleChangeProjectDate}
                 value={projectDate}
-                placeholder="yy-mm-dd"
               />
             </div>
           </div>

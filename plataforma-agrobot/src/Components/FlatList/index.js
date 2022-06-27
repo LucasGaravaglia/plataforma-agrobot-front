@@ -1,7 +1,23 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { DataContext } from "../../Context/DataContext";
+import { TargetScreenContext } from "../../Context/TargetScreen";
 import "./style.scss";
 
-function ViewInfo({ dataList, ComponentProp, FirstComponent, onClick }) {
+function ViewInfo({
+  dataList,
+  ComponentProp,
+  FirstComponent,
+  onClick,
+  screenTarget = 1,
+}) {
+  const { setMissions, setProject } = useContext(DataContext);
+  const { setCurrentScreen } = useContext(TargetScreenContext);
+
+  const handlerSetProject = (item) => {
+    console.log(item);
+    setMissions(item.missions);
+    setCurrentScreen(screenTarget);
+  };
   return (
     <div id="container-List">
       <ul>
@@ -18,7 +34,7 @@ function ViewInfo({ dataList, ComponentProp, FirstComponent, onClick }) {
               isLarge={Item.isLarge}
               numericField={Item.numericField}
               FirstField={Item.FirstField}
-              SecondField={Item.SecondField}
+              onClick={() => handlerSetProject(Item)}
             />
           </li>
         ))}

@@ -12,12 +12,12 @@ import { DataContext } from "../../Context/DataContext";
 
 export default function Home() {
   const { currentScreen } = useContext(TargetScreenContext);
-  const { userData } = useContext(DataContext);
 
   const SelectScreen = () => {
     if (currentScreen === 0) return <ProjectPanel />;
     if (currentScreen === 1) return <MissionPanel />;
     if (currentScreen === 2) return <PointsPanel />;
+    else return <ProjectPanel />;
   };
   return (
     <div id="container">

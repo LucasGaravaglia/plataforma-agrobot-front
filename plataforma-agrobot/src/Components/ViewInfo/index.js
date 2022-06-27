@@ -6,8 +6,8 @@ function ViewInfo({
   isLarge = true,
   titleView = "Pulverizar Plantação Região Leste",
   numericField = 0,
-  FirstField = "Delivery",
-  SecondField = "20/03/2000",
+  FirstField = "20/03/2000",
+  onClick,
 }) {
   const [hoverIcon, setHoverIcon] = useState(false);
   return (
@@ -23,6 +23,7 @@ function ViewInfo({
         className={`${hoverIcon ? "hover" : "notHover"} ${
           isLarge ? "large" : "small"
         }`}
+        onClick={() => onClick()}
       >
         <div id="box-top">
           <h1 id="title-viewInfo">{titleView}</h1>
@@ -37,12 +38,8 @@ function ViewInfo({
               </div>
               <div id="content-2">
                 <div id="container-text">
-                  <h3 id="first-field-viewInfo">Tipo: </h3>
-                  <h4 id="second-field-viewInfo">{FirstField}</h4>
-                </div>
-                <div id="container-text">
                   <h3 id="first-field-viewInfo">Data: </h3>
-                  <h4 id="second-field-viewInfo">{SecondField}</h4>
+                  <h4 id="second-field-viewInfo">{FirstField}</h4>
                 </div>
               </div>
             </>
