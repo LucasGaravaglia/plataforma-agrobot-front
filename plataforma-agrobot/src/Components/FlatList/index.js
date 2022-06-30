@@ -11,16 +11,18 @@ function ViewInfo({
   screenTarget = 1,
 }) {
   const { setCurrentScreen } = useContext(TargetScreenContext);
-  const { setMissions, setLocations } = useContext(DataContext);
+  const { setMissions, setLocations, setIdProject, setIdMission } =
+    useContext(DataContext);
 
   const handlerSet = (item) => {
     console.log(item);
     if (screenTarget === 1) {
       setMissions(item.missions);
+      setIdProject(item.id);
     } else if (screenTarget === 2) {
+      setIdMission(item.id);
       setLocations(item.locations);
     }
-
     setCurrentScreen(screenTarget);
   };
   return (

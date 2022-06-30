@@ -3,6 +3,7 @@ import "./style.scss";
 import FlatList from "../../Components/FlatList";
 import ViewInfo from "../../Components/ViewInfo";
 import NewProject from "../../Components/NewProject";
+import AddProject from "../../Components/AddProject";
 import { MdArrowBack } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { TargetScreenContext } from "../../Context/TargetScreen";
@@ -10,8 +11,9 @@ import { DataContext } from "../../Context/DataContext";
 
 export default function MissionPanel() {
   const { missions, flag, setLocations } = useContext(DataContext);
-  const { currentScreen } = useContext(TargetScreenContext);
+  const { currentScreen, setCurrentScreen } = useContext(TargetScreenContext);
   const [viewMissions, setViewMissions] = useState([{ isLarge: false }]);
+  const [overlay, setOverlay] = useState(false);
   useEffect(() => {
     for (let i = 0; i < missions.length; i++) {
       if (i === 0)
@@ -48,10 +50,20 @@ export default function MissionPanel() {
           dataList={viewMissions}
           FirstComponent={NewProject}
           ComponentProp={ViewInfo}
-          onClick={() => {}}
+          onClick={() => setOverlay((old) => !old)}
           screenTarget={2}
           setter={setLocations}
         />
+        {overlay ? (
+          <div className="overlay">
+            <AddProject
+              onClick={() => {
+                setOverlay((old) => !old);
+                setCurrentScreen(0);
+              }}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );

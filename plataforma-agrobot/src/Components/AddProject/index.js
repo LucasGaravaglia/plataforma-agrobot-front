@@ -1,42 +1,56 @@
 import { useContext, useState } from "react";
 import api from "../../services/api";
 import { DataContext } from "../../Context/DataContext";
+import { TargetScreenContext } from "../../Context/TargetScreen";
 import "./style.scss";
 
-function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
+function AddProject({ onClick }) {
   const [projectName, setProjectName] = useState("");
-  const [projectType, setProjectType] = useState("");
   const [projectDate, setProjectDate] = useState("");
-  const { user, setFlag } = useContext(DataContext);
+  const { user, setFlag, idProject } = useContext(DataContext);
+  const { currentScreen } = useContext(TargetScreenContext);
 
   const handleChangeProjectName = (event) => {
     setProjectName(event.target.value);
-  };
-
-  const handleChangeProjectType = (event) => {
-    setProjectType(event.target.value);
   };
 
   const handleChangeProjectDate = (event) => {
     setProjectDate(event.target.value);
   };
 
-  const handleConfirmButton = () => {
-    api
-      .post("projects?populate=*", {
-        data: {
+  const handleConfirmButton = async () => {
+    if (currentScreen == 0) {
+      api
+        .post("project", {
           projectName: projectName,
           projectDate: projectDate,
-          user: user,
-        },
-      })
-      .then((res) => {
-        setFlag((old) => !old);
-        onClick();
-      })
-      .catch((err) => {
-        onClick();
-      });
+          idUser: user,
+        })
+        .then((res) => {
+          setFlag((old) => !old);
+          onClick();
+        })
+        .catch((err) => {
+          onClick();
+        });
+    } else if (currentScreen == 1) {
+      let missions = await api.get(`missions=${idProject}`);
+      let data = {
+        missionName: projectName,
+        missionOrder: missions.data[missions.data.length - 1].missionOrder + 1,
+        idProject: idProject,
+      };
+      console.log(data);
+      api
+        .post("mission", data)
+        .then((res) => {
+          setFlag((old) => !old);
+          onClick();
+        })
+        .catch((err) => {
+          onClick();
+        });
+    }
   };
   return (
     <div className="container-hover">
@@ -50,9 +64,14 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
         <div id="box-bottom">
           <div className="content-box-bottom">
             <div className="container-text-input">
-              <h1 className="text-AddProject">Nome Projeto</h1>
-              <h1 className="text-AddProject">Tipo do Projeto</h1>
-              <h1 className="text-AddProject">Data</h1>
+              {currentScreen == 0 ? (
+                <>
+                  <h1 className="text-AddProject">Nome Projeto</h1>
+                  <h1 className="text-AddProject">Data</h1>
+                </>
+              ) : (
+                <h1 className="text-AddProject">Nome da missão</h1>
+              )}
             </div>
             <div className="container-input">
               <input
@@ -61,20 +80,14 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
                 onChange={handleChangeProjectName}
                 value={projectName}
               />
-              <select
-                className="input-AddProject"
-                onChange={handleChangeProjectType}
-              >
-                {listTypeProjects.map((item) => (
-                  <option value={item}>{item}</option>
-                ))}
-              </select>
-              <input
-                type="date"
-                className="input-AddProject"
-                onChange={handleChangeProjectDate}
-                value={projectDate}
-              />
+              {currentScreen == 0 ? (
+                <input
+                  type="date"
+                  className="input-AddProject"
+                  onChange={handleChangeProjectDate}
+                  value={projectDate}
+                />
+              ) : null}
             </div>
           </div>
           <div id="container-bottom-button">

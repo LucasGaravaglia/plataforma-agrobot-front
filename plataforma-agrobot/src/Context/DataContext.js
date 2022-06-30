@@ -13,6 +13,7 @@ export function DataContextProvider(props) {
   ]);
   const [user, setUser] = useState(1);
   const [mission, setMission] = useState(1);
+  const [idProject, setIdProject] = useState(1);
   const [missions, setMissions] = useState([
     {
       titleView: "titleView",
@@ -44,8 +45,10 @@ export function DataContextProvider(props) {
         setUser,
         flag,
         setFlag,
-        mission,
-        setMission,
+        idMission: mission,
+        setIdMission: setMission,
+        idProject,
+        setIdProject,
       }}
     >
       {props.children}
