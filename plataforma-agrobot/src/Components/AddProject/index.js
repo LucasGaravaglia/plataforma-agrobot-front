@@ -32,12 +32,11 @@ function AddProject({ listTypeProjects = ["delivery", "rural"], onClick }) {
       })
       .then((res) => {
         setFlag((old) => !old);
-        console.log(res);
+        onClick();
       })
       .catch((err) => {
-        console.log(err);
+        onClick();
       });
-    onClick();
   };
   return (
     <div className="container-hover">

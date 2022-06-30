@@ -10,12 +10,17 @@ function ViewInfo({
   onClick,
   screenTarget = 1,
 }) {
-  const { setMissions, setProject } = useContext(DataContext);
   const { setCurrentScreen } = useContext(TargetScreenContext);
+  const { setMissions, setLocations } = useContext(DataContext);
 
-  const handlerSetProject = (item) => {
+  const handlerSet = (item) => {
     console.log(item);
-    setMissions(item.missions);
+    if (screenTarget === 1) {
+      setMissions(item.missions);
+    } else if (screenTarget === 2) {
+      setLocations(item.locations);
+    }
+
     setCurrentScreen(screenTarget);
   };
   return (
@@ -27,14 +32,14 @@ function ViewInfo({
             onClick={() => onClick()}
           />
         </li>
-        {dataList.map((Item) => (
-          <li>
+        {dataList.map((Item, index) => (
+          <li key={index}>
             <ComponentProp
               titleView={Item.titleView}
               isLarge={Item.isLarge}
               numericField={Item.numericField}
               FirstField={Item.FirstField}
-              onClick={() => handlerSetProject(Item)}
+              onClick={() => handlerSet(Item)}
             />
           </li>
         ))}

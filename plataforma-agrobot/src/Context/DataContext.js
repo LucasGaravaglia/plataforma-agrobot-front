@@ -11,16 +11,8 @@ export function DataContextProvider(props) {
       isLarge: true,
     },
   ]);
-  const [projectData, setProjectData] = useState([
-    {
-      titleView: "titleView",
-      numericField: "1",
-      FirstField: "FirstField",
-      isLarge: true,
-    },
-  ]);
   const [user, setUser] = useState(1);
-  const [project, setProject] = useState();
+  const [mission, setMission] = useState(1);
   const [missions, setMissions] = useState([
     {
       titleView: "titleView",
@@ -30,22 +22,30 @@ export function DataContextProvider(props) {
     },
   ]);
   const [flag, setFlag] = useState(true);
+  const [locations, setLocations] = useState([
+    {
+      titleView: "titleView",
+      numericField: "1",
+      FirstField: "FirstField",
+      isLarge: true,
+    },
+  ]);
 
   return (
     <DataContext.Provider
       value={{
-        setProject,
         setMissions,
+        locations,
+        setLocations,
         missions,
-        project,
         userData,
         setUserData,
         user,
         setUser,
         flag,
         setFlag,
-        projectData,
-        setProjectData,
+        mission,
+        setMission,
       }}
     >
       {props.children}

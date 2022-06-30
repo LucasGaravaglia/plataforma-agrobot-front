@@ -15,7 +15,6 @@ function DrawNavigation() {
   const { setCurrentScreen } = useContext(TargetScreenContext);
   const toggleBar = () => {
     setOpen(!open);
-    console.log(open);
   };
   return (
     <div id="side-bar" className={open ? "open" : "close"}>
@@ -36,7 +35,6 @@ function DrawNavigation() {
             className={open ? "open" : "close"}
             onClick={() => {
               setCurrentScreen(0);
-              console.log("aaaaaaaaaaaaaaa");
             }}
           >
             <MdMenuBook size={30} id="iconStyle" />

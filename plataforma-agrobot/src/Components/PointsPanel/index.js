@@ -2,25 +2,40 @@ import "../../styles/global.scss";
 import "./style.scss";
 import InfoMission from "../../Components/InfoMission";
 import { MdArrowBack } from "react-icons/md";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import { DataContext } from "../../Context/DataContext";
+import api from "../../services/api";
 
 export default function PointsPanel({
   MissionTitle = "Pulverização plantação leste",
 }) {
   const { currentScreen, setCurrentScreen } = useContext(TargetScreenContext);
-  const { missions, flag } = useContext(DataContext);
+  const { mission, flag, locations } = useContext(DataContext);
+  const [order, setOrder] = useState([]);
+  const [lats, setLats] = useState([]);
+  const [longs, setLongs] = useState([]);
+  const [actions, setActions] = useState([]);
   useEffect(() => {
-    console.log(missions);
-  }, [missions]);
+    setLats([]);
+    setLongs([]);
+    setOrder([]);
+    setActions([]);
+    locations.map((location) => {
+      setLats((old) => [...old, location.latitude]);
+      setLongs((old) => [...old, location.longitude]);
+      setOrder((old) => [...old, location.locationOrder]);
+      if (location.actions[0] && location.actions[0].actionType)
+        setActions((old) => [
+          ...old,
+          location.actions[0].actionType.actionName,
+        ]);
+    });
+  }, []);
   return (
     <div id="project-container">
       <div id="panel-container">
         <div className="header-container-pointsPanel">
-          <div className="icon-arrow-back">
-            <MdArrowBack size={20} onClick={() => setCurrentScreen(1)} />
-          </div>
           <div className="header-title-pointsPanel">
             <h1 id="panel-title">{MissionTitle}</h1>
             <div className="button-pointsPanel">
@@ -29,10 +44,10 @@ export default function PointsPanel({
           </div>
         </div>
         <div className="content-InfoMission">
-          <InfoMission titleView="Ordem" />
-          <InfoMission titleView="Latitude" />
-          <InfoMission titleView="Longitude" />
-          <InfoMission titleView="Ação" />
+          <InfoMission titleView="Ordem" content={order} />
+          <InfoMission titleView="Latitude" content={lats} />
+          <InfoMission titleView="Longitude" content={longs} />
+          <InfoMission titleView="Ação" content={actions} />
         </div>
       </div>
     </div>

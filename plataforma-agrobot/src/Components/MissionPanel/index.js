@@ -7,22 +7,21 @@ import { MdArrowBack } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import { DataContext } from "../../Context/DataContext";
-import api from "../../services/api";
 
 export default function MissionPanel() {
-  const { missions, flag } = useContext(DataContext);
-  const { currentScreen, setCurrentScreen } = useContext(TargetScreenContext);
-  const [overlay, setOverlay] = useState(false);
+  const { missions, flag, setLocations } = useContext(DataContext);
+  const { currentScreen } = useContext(TargetScreenContext);
   const [viewMissions, setViewMissions] = useState([{ isLarge: false }]);
   useEffect(() => {
-    console.log(missions);
     for (let i = 0; i < missions.length; i++) {
       if (i === 0)
         setViewMissions([
           {
+            id: missions[i].id,
             titleView: missions[i].missionName,
             numericField: 1,
             FirstField: missions[i].missionOrder,
+            locations: missions[i].locations,
             isLarge: false,
           },
         ]);
@@ -30,20 +29,20 @@ export default function MissionPanel() {
         setViewMissions((oldArray) => [
           ...oldArray,
           {
+            id: missions[i].id,
             titleView: missions[i].missionName,
             numericField: 1,
             FirstField: missions[i].missionOrder,
+            locations: missions[i].locations,
             isLarge: false,
           },
         ]);
     }
   }, [currentScreen, flag, missions]);
+
   return (
     <div id="project-container">
       <div id="panel-container">
-        <div className="icon-arrow-back">
-          <MdArrowBack size={20} onClick={() => setCurrentScreen(0)} />
-        </div>
         <h1 id="panel-title">Painel de Missões</h1>
         <FlatList
           dataList={viewMissions}
@@ -51,6 +50,7 @@ export default function MissionPanel() {
           ComponentProp={ViewInfo}
           onClick={() => {}}
           screenTarget={2}
+          setter={setLocations}
         />
       </div>
     </div>

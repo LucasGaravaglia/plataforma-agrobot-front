@@ -22,6 +22,7 @@
       justify-content: flex-start;
       align-items: flex-start;
       margin-bottom: 1%;
+      padding-top: 2%;
     }
     .header-title-pointsPanel {
       display: flex;
@@ -63,18 +64,6 @@
       width: 90%;
       height: 80%;
       justify-content: space-around;
-    }
-    .icon-arrow-back {
-      display: flex;
-      margin: 10px;
-      width: 30px;
-      height: 30px;
-      justify-content: center;
-      align-items: center;
-      border-radius: 15px;
-    }
-    .icon-arrow-back:hover {
-      background-color: #979696;
     }
   }
   #panel-container::-webkit-scrollbar {

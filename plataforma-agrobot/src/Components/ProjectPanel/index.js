@@ -11,7 +11,8 @@ import { DataContext } from "../../Context/DataContext";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 
 export default function ProjectPanel() {
-  const { userData, setUserData, user, flag } = useContext(DataContext);
+  const { userData, setUserData, user, flag, setMissions } =
+    useContext(DataContext);
   const { currentScreen } = useContext(TargetScreenContext);
   const [overlay, setOverlay] = useState(false);
 
@@ -24,11 +25,11 @@ export default function ProjectPanel() {
             setUserData([
               {
                 titleView: res.data[i].projectName,
-                numericField: res.data[i].idMissions.length,
+                numericField: res.data[i].missions.length,
                 FirstField: res.data[i].projectDate,
                 isLarge: true,
                 id: res.data[i].id,
-                missions: res.data[i].idMissions,
+                missions: res.data[i].missions,
               },
             ]);
           else
@@ -36,11 +37,11 @@ export default function ProjectPanel() {
               ...oldArray,
               {
                 titleView: res.data[i].projectName,
-                numericField: res.data[i].idMissions.length,
+                numericField: res.data[i].missions.length,
                 FirstField: res.data[i].projectDate,
                 isLarge: true,
                 id: res.data[i].id,
-                missions: res.data[i].idMissions,
+                missions: res.data[i].missions,
               },
             ]);
         }
@@ -57,7 +58,6 @@ export default function ProjectPanel() {
         ]);
       });
   }, [currentScreen, flag]);
-
   return (
     <div id="project-container">
       <div id="panel-container">
@@ -68,6 +68,7 @@ export default function ProjectPanel() {
           ComponentProp={ViewInfo}
           onClick={() => setOverlay((old) => !old)}
           screenTarget={1}
+          setter={setMissions}
         />
         {overlay ? (
           <div className="overlay">
