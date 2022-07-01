@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { MdCreateNewFolder } from "react-icons/md";
 import "./style.scss";
 

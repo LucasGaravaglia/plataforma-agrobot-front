@@ -1,17 +1,13 @@
 import "../../styles/global.scss";
 import "./style.scss";
 import InfoMission from "../../Components/InfoMission";
-import { MdArrowBack } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
-import { TargetScreenContext } from "../../Context/TargetScreen";
 import { DataContext } from "../../Context/DataContext";
-import api from "../../services/api";
 
 export default function PointsPanel({
   MissionTitle = "Pulverização plantação leste",
 }) {
-  const { currentScreen, setCurrentScreen } = useContext(TargetScreenContext);
-  const { mission, flag, locations } = useContext(DataContext);
+  const { locations } = useContext(DataContext);
   const [order, setOrder] = useState([]);
   const [lats, setLats] = useState([]);
   const [longs, setLongs] = useState([]);

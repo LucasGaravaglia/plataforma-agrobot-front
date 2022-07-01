@@ -8,12 +8,10 @@ import AddProject from "../../Components/AddProject";
 
 import api from "../../services/api";
 import { DataContext } from "../../Context/DataContext";
-import { TargetScreenContext } from "../../Context/TargetScreen";
 
 export default function ProjectPanel() {
   const { userData, setUserData, user, flag, setMissions } =
     useContext(DataContext);
-  const { currentScreen } = useContext(TargetScreenContext);
   const [overlay, setOverlay] = useState(false);
 
   useEffect(() => {
@@ -57,7 +55,7 @@ export default function ProjectPanel() {
           },
         ]);
       });
-  }, [currentScreen, flag]);
+  }, [flag, user]);
   return (
     <div id="project-container">
       <div id="panel-container">

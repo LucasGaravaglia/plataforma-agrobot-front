@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { DataContext } from "../../Context/DataContext";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import "./style.scss";
@@ -15,7 +15,6 @@ function ViewInfo({
     useContext(DataContext);
 
   const handlerSet = (item) => {
-    console.log(item);
     if (screenTarget === 1) {
       setMissions(item.missions);
       setIdProject(item.id);

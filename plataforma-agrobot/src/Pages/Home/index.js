@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import "../../styles/global.scss";
 import "./style.scss";
 
@@ -8,7 +8,6 @@ import MissionPanel from "../../Components/MissionPanel";
 import PointsPanel from "../../Components/PointsPanel";
 
 import { TargetScreenContext } from "../../Context/TargetScreen";
-import { DataContext } from "../../Context/DataContext";
 
 export default function Home() {
   const { currentScreen } = useContext(TargetScreenContext);
@@ -22,11 +21,7 @@ export default function Home() {
   return (
     <div id="container">
       <DrawNavigation />
-      {/* <AddProject /> */}
       {SelectScreen()}
-      {/* <ProjectPanel /> */}
-      {/* <PointsPanel /> */}
-      {/* <MissionPanel /> */}
     </div>
   );
 }

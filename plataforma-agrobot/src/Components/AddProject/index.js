@@ -19,7 +19,7 @@ function AddProject({ onClick }) {
   };
 
   const handleConfirmButton = async () => {
-    if (currentScreen == 0) {
+    if (currentScreen === 0) {
       api
         .post("project", {
           projectName: projectName,
@@ -33,14 +33,22 @@ function AddProject({ onClick }) {
         .catch((err) => {
           onClick();
         });
-    } else if (currentScreen == 1) {
+    } else if (currentScreen === 1) {
       let missions = await api.get(`missions=${idProject}`);
-      let data = {
-        missionName: projectName,
-        missionOrder: missions.data[missions.data.length - 1].missionOrder + 1,
-        idProject: idProject,
-      };
-      console.log(data);
+      let data;
+      if (missions.data.length === 0)
+        data = {
+          missionName: projectName,
+          missionOrder: 1,
+          idProject: idProject,
+        };
+      else
+        data = {
+          missionName: projectName,
+          missionOrder:
+            missions.data[missions.data.length - 1].missionOrder + 1,
+          idProject: idProject,
+        };
       api
         .post("mission", data)
         .then((res) => {
@@ -48,6 +56,7 @@ function AddProject({ onClick }) {
           onClick();
         })
         .catch((err) => {
+          console.log(err);
           onClick();
         });
     }
@@ -64,7 +73,7 @@ function AddProject({ onClick }) {
         <div id="box-bottom">
           <div className="content-box-bottom">
             <div className="container-text-input">
-              {currentScreen == 0 ? (
+              {currentScreen === 0 ? (
                 <>
                   <h1 className="text-AddProject">Nome Projeto</h1>
                   <h1 className="text-AddProject">Data</h1>
@@ -80,7 +89,7 @@ function AddProject({ onClick }) {
                 onChange={handleChangeProjectName}
                 value={projectName}
               />
-              {currentScreen == 0 ? (
+              {currentScreen === 0 ? (
                 <input
                   type="date"
                   className="input-AddProject"

@@ -4,7 +4,6 @@ import FlatList from "../../Components/FlatList";
 import ViewInfo from "../../Components/ViewInfo";
 import NewProject from "../../Components/NewProject";
 import AddProject from "../../Components/AddProject";
-import { MdArrowBack } from "react-icons/md";
 import { useContext, useEffect, useState } from "react";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import { DataContext } from "../../Context/DataContext";
@@ -46,14 +45,22 @@ export default function MissionPanel() {
     <div id="project-container">
       <div id="panel-container">
         <h1 id="panel-title">Painel de Missões</h1>
-        <FlatList
-          dataList={viewMissions}
-          FirstComponent={NewProject}
-          ComponentProp={ViewInfo}
-          onClick={() => setOverlay((old) => !old)}
-          screenTarget={2}
-          setter={setLocations}
-        />
+        {viewMissions[0].id ? (
+          <FlatList
+            dataList={viewMissions}
+            FirstComponent={NewProject}
+            ComponentProp={ViewInfo}
+            onClick={() => setOverlay((old) => !old)}
+            screenTarget={2}
+            setter={setLocations}
+          />
+        ) : (
+          <NewProject
+            isLarge={false}
+            onClick={() => setOverlay((old) => !old)}
+          />
+        )}
+
         {overlay ? (
           <div className="overlay">
             <AddProject
