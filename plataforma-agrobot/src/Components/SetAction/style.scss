@@ -1,0 +1,144 @@
+.container-setAction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.3);
+}
+.overlay {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: rgba($color: #000000, $alpha: 0.6);
+  width: 100%;
+  height: 100%;
+}
+
+#container-box-addProject {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 200px;
+  align-items: flex-end;
+  #box-top-AddProject {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: #f5da42;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    #box-top-button {
+      display: flex;
+      width: 100px;
+      height: 60%;
+      background-color: #53516f;
+      border-radius: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+    #box-top-button:hover {
+      cursor: pointer;
+      background-color: #7672a7;
+    }
+  }
+  #box-bottom-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #53516f;
+  }
+  #box-bottom-button:hover {
+    cursor: pointer;
+    background-color: #7672a7;
+  }
+
+  #box-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    .content-box-bottom {
+      display: flex;
+      flex-direction: row;
+      align-items: space-evenly;
+      justify-content: space-evenly;
+      width: 100%;
+      height: 80%;
+    }
+    #container-bottom-button {
+      display: flex;
+      align-items: center;
+      width: 90%;
+      justify-content: flex-end;
+      margin-bottom: 5px;
+    }
+  }
+  #title-AddProject {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+    font-family: "Roboto", sans-serif;
+    font-size: 18px;
+    color: #262626;
+    text-align: center;
+  }
+}
+.text-AddProject {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #262626;
+}
+.container-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  height: 80%;
+  justify-content: space-evenly;
+}
+.container-text-input {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  height: 80%;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.input-AddProject {
+  border-width: 0px;
+  background: #dddddd;
+  width: 100%;
+  height: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  padding-left: 5px;
+}
+#title-button {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  color: #fff;
+}
+.select-setAction {
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  cursor: pointer;
+}
+.setAction-container-button {
+  background-color: #f00;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 10px;
+}

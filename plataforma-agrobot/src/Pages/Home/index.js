@@ -6,8 +6,10 @@ import DrawNavigation from "../../Components/DrawNavigation";
 import ProjectPanel from "../../Components/ProjectPanel";
 import MissionPanel from "../../Components/MissionPanel";
 import PointsPanel from "../../Components/PointsPanel";
+import NewLocation from "../../Components/NewLocation";
 
 import { TargetScreenContext } from "../../Context/TargetScreen";
+import SetAction from "../../Components/SetAction";
 
 export default function Home() {
   const { currentScreen } = useContext(TargetScreenContext);
@@ -22,6 +24,7 @@ export default function Home() {
     <div id="container">
       <DrawNavigation />
       {SelectScreen()}
+      {/* <SetAction /> */}
     </div>
   );
 }
