@@ -6,13 +6,14 @@ import DrawNavigation from "../../Components/DrawNavigation";
 import ProjectPanel from "../../Components/ProjectPanel";
 import MissionPanel from "../../Components/MissionPanel";
 import PointsPanel from "../../Components/PointsPanel";
-import NewLocation from "../../Components/NewLocation";
 
 import { TargetScreenContext } from "../../Context/TargetScreen";
-import SetAction from "../../Components/SetAction";
+import { Login } from "../../Components/Login";
+import { DataContext } from "../../Context/DataContext";
 
 export default function Home() {
   const { currentScreen } = useContext(TargetScreenContext);
+  const { isAuthenticated } = useContext(DataContext);
 
   const SelectScreen = () => {
     if (currentScreen === 0) return <ProjectPanel />;
@@ -20,11 +21,17 @@ export default function Home() {
     if (currentScreen === 2) return <PointsPanel />;
     else return <ProjectPanel />;
   };
+
   return (
     <div id="container">
-      <DrawNavigation />
-      {SelectScreen()}
-      {/* <SetAction /> */}
+      {!isAuthenticated ? (
+        <Login />
+      ) : (
+        <>
+          <DrawNavigation />
+          {SelectScreen()}
+        </>
+      )}
     </div>
   );
 }

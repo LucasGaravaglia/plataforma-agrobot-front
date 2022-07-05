@@ -12,6 +12,7 @@ export function DataContextProvider(props) {
     },
   ]);
   const [user, setUser] = useState(1);
+  const [isAuthenticated, setAuthenticated] = useState(false);
   const [mission, setMission] = useState(1);
   const [idProject, setIdProject] = useState(1);
   const [missions, setMissions] = useState([
@@ -35,6 +36,8 @@ export function DataContextProvider(props) {
   return (
     <DataContext.Provider
       value={{
+        isAuthenticated,
+        setAuthenticated,
         setMissions,
         locations,
         setLocations,
