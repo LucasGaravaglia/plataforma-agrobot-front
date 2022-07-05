@@ -1,11 +1,6 @@
 import { createContext, useContext } from "react";
 import { app } from "../services/firebase";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 
 import api from "../services/api";
@@ -15,16 +10,15 @@ export const AuthContext = createContext({});
 const provider = new GoogleAuthProvider();
 
 export function AuthContextProvider(props) {
-  const { setUser, setAuthenticated, user } = useContext(DataContext);
+  const { setUser, setAuthenticated } = useContext(DataContext);
   const auth = getAuth(app);
 
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
         const user = result.user;
         verifyUser(user);
+        toast.success("Usuário autenticado com o Google!");
       })
       .catch((error) => {
         console.error(error);
@@ -37,10 +31,10 @@ export function AuthContextProvider(props) {
       var promise = api
         .get(`/user/firebaseId=${user.uid}`)
         .then((id) => {
-          setAuthenticated(true);
           setUser(id);
+          setAuthenticated(true);
         })
-        .catch(async (err) => {
+        .catch((err) => {
           api
             .post("/user", {
               name: user.displayName,
@@ -62,7 +56,7 @@ export function AuthContextProvider(props) {
   }
 
   async function signOut() {
-    await signOut(app);
+    setAuthenticated(false);
     toast.success("Logout realizado");
   }
 
