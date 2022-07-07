@@ -34,4 +34,11 @@
   #panel-container::-webkit-scrollbar {
     display: none;
   }
+  #header-title {
+    padding-top: 3px;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

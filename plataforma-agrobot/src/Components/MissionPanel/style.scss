@@ -36,4 +36,23 @@
   #panel-container::-webkit-scrollbar {
     display: none;
   }
+  #header-title {
+    padding-top: 3px;
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #download-icon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+  }
+  #download-icon:hover {
+    cursor: pointer;
+    background-color: #ddd;
+    border-radius: 45px;
+  }
 }

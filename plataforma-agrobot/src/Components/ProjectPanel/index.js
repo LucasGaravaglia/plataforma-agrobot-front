@@ -59,15 +59,25 @@ export default function ProjectPanel() {
   return (
     <div id="project-container">
       <div id="panel-container">
-        <h1 id="panel-title">Painel de Projetos</h1>
-        <FlatList
-          dataList={userData}
-          FirstComponent={NewProject}
-          ComponentProp={ViewInfo}
-          onClick={() => setOverlay((old) => !old)}
-          screenTarget={1}
-          setter={setMissions}
-        />
+        <div id="header-title">
+          <h1 id="panel-title">Painel de Projetos</h1>
+        </div>
+
+        {userData[0].id ? (
+          <FlatList
+            dataList={userData}
+            FirstComponent={NewProject}
+            ComponentProp={ViewInfo}
+            onClick={() => setOverlay((old) => !old)}
+            screenTarget={1}
+            setter={setMissions}
+          />
+        ) : (
+          <NewProject
+            isLarge={true}
+            onClick={() => setOverlay((old) => !old)}
+          />
+        )}
         {overlay ? (
           <div className="overlay">
             <AddProject onClick={() => setOverlay((old) => !old)} />

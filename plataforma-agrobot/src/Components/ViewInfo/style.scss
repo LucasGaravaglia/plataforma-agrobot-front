@@ -26,20 +26,6 @@ div {
   flex-direction: column;
 }
 
-#icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25px;
-  height: 25px;
-  border-radius: 15px;
-}
-#icon:hover {
-  border-radius: 15px;
-  width: 25px;
-  height: 25px;
-  background: #ddd;
-}
 div.hover {
   cursor: pointer;
   #box-top {

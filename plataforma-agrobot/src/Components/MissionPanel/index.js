@@ -7,6 +7,7 @@ import AddProject from "../../Components/AddProject";
 import { useContext, useEffect, useState } from "react";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import { DataContext } from "../../Context/DataContext";
+import { MdDownload } from "react-icons/md";
 
 export default function MissionPanel() {
   const { missions, flag, setLocations } = useContext(DataContext);
@@ -44,7 +45,36 @@ export default function MissionPanel() {
   return (
     <div id="project-container">
       <div id="panel-container">
-        <h1 id="panel-title">Painel de Missões</h1>
+        <div id="header-title">
+          <h1 id="panel-title">Painel de Missões</h1>
+          <div id="download-icon">
+            <MdDownload
+              size={25}
+              onClick={() => {
+                console.log(viewMissions);
+                let outputJson = [];
+                for (let i = 0; i < viewMissions.length; i++) {
+                  outputJson.push({
+                    name: viewMissions[i].titleView,
+                    order: i,
+                    locations: [],
+                  });
+                  for (let j = 0; j < viewMissions[i].locations.length; j++) {
+                    outputJson[i].locations.push({
+                      action:
+                        viewMissions[i].locations[j].actions[0].actionType
+                          .actionName,
+                      order: j,
+                      latitude: viewMissions[i].locations[j].latitude,
+                      longitude: viewMissions[i].locations[j].longitude,
+                    });
+                  }
+                }
+                console.log(outputJson);
+              }}
+            />
+          </div>
+        </div>
         {viewMissions[0].id ? (
           <FlatList
             dataList={viewMissions}

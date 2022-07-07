@@ -31,7 +31,7 @@ export function AuthContextProvider(props) {
       var promise = api
         .get(`/user/firebaseId=${user.uid}`)
         .then((id) => {
-          setUser(id);
+          setUser(id.data);
           setAuthenticated(true);
         })
         .catch((err) => {

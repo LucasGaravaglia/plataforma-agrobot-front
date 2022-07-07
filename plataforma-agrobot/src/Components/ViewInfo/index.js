@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { MdDownload } from "react-icons/md";
 import "./style.scss";
 
 function ViewInfo({
@@ -58,24 +57,7 @@ function ViewInfo({
               </div>
             </>
           )}
-          {isLarge ? (
-            <div id="content-3">
-              <div
-                id="icon"
-                onMouseEnter={() => {
-                  setHoverIcon(false);
-                }}
-                onMouseLeave={() => {
-                  setHoverIcon(true);
-                }}
-                className={`${hoverIcon ? "notHover" : "hover"}`}
-              >
-                <MdDownload size={16} color="#1C1B1F" />
-              </div>
-            </div>
-          ) : (
-            <div id="content-3" />
-          )}
+          <div id="content-3" />
         </div>
       </div>
     </>
