@@ -19,21 +19,18 @@ function NewLocation() {
           setNewLocation({
             latitude: lat,
             longitude: lng,
-            locationOrder: locations[locations.length - 1].locationOrder + 1,
+            locationOrder: 0,
             idMission: idMission,
           });
         } else {
           setNewLocation({
             latitude: lat,
             longitude: lng,
-            locationOrder: 1,
+            locationOrder: 0,
             idMission: idMission,
           });
         }
-        api.post("location", newLocation).then((e) => {
-          setIdLocation(e.data);
-          setOverlay(true);
-        });
+        setOverlay(true);
       },
     });
     return null;
@@ -48,6 +45,9 @@ function NewLocation() {
               id={idLocation}
               CancelClick={() => setOverlay(false)}
               ConfirmClick={async () => {
+                api.post("location", newLocation).then((e) => {
+                  setIdLocation(e.data);
+                });
                 setLocations((await api.get(`locations=${idMission}`)).data);
                 setOverlay(false);
               }}

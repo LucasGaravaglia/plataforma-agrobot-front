@@ -44,18 +44,12 @@ export default function SetAction({ ConfirmClick, CancelClick, id }) {
           <div id="container-bottom-button">
             <div
               id="box-bottom-button"
-              onClick={() => {
-                api
-                  .post("action", {
-                    idActionType: selectedAction,
-                    idLocation: id,
-                  })
-                  .then(() => {
-                    ConfirmClick();
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
+              onClick={async () => {
+                ConfirmClick();
+                await api.post("action", {
+                  idActionType: selectedAction,
+                  idLocation: id,
+                });
               }}
             >
               <h1 id="title-button">Ok</h1>

@@ -63,7 +63,7 @@ export default function ProjectPanel() {
           <h1 id="panel-title">Painel de Projetos</h1>
         </div>
 
-        {userData[0].id ? (
+        {userData[0] ? (
           <FlatList
             dataList={userData}
             FirstComponent={NewProject}

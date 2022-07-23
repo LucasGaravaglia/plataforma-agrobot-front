@@ -10,10 +10,12 @@ import {
 import "./style.scss";
 import { TargetScreenContext } from "../../Context/TargetScreen";
 import { AuthContext } from "../../Context/Auth";
+import { DataContext } from "../../Context/DataContext";
 
 function DrawNavigation() {
   const [open, setOpen] = useState(true);
   const { setCurrentScreen } = useContext(TargetScreenContext);
+  const { cleanData } = useContext(DataContext);
   const { signOut } = useContext(AuthContext);
   const toggleBar = () => {
     setOpen(!open);
@@ -54,7 +56,14 @@ function DrawNavigation() {
         </li>
 
         <li id="li-color" className={open ? "open" : "close"}>
-          <div id="liDiv" onClick={signOut}>
+          <div
+            id="liDiv"
+            onClick={() => {
+              cleanData();
+              setCurrentScreen(0);
+              signOut();
+            }}
+          >
             <h4>Log Out</h4>
             <MdLogout size={30} id="iconStyle" />
           </div>

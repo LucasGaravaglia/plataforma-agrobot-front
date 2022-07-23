@@ -42,7 +42,7 @@ export function AuthContextProvider(props) {
               firebaseId: user.uid,
             })
             .then((dt) => {
-              setUser(dt);
+              setUser(dt.data);
               setAuthenticated(true);
             });
         });

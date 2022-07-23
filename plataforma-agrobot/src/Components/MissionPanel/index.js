@@ -51,7 +51,6 @@ export default function MissionPanel() {
             <MdDownload
               size={25}
               onClick={() => {
-                console.log(viewMissions);
                 let outputJson = [];
                 for (let i = 0; i < viewMissions.length; i++) {
                   outputJson.push({

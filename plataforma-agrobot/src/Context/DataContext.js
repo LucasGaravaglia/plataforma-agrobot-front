@@ -3,39 +3,30 @@ import { createContext, useState } from "react";
 export const DataContext = createContext();
 
 export function DataContextProvider(props) {
-  const [userData, setUserData] = useState([
-    {
-      titleView: "titleView",
-      numericField: "1",
-      FirstField: "FirstField",
-      isLarge: true,
-    },
-  ]);
-  const [user, setUser] = useState(1);
+  const [userData, setUserData] = useState([]);
+  const [user, setUser] = useState();
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [mission, setMission] = useState(1);
   const [idProject, setIdProject] = useState(1);
-  const [missions, setMissions] = useState([
-    {
-      titleView: "titleView",
-      numericField: "1",
-      FirstField: "FirstField",
-      isLarge: false,
-    },
-  ]);
+  const [missions, setMissions] = useState([]);
   const [flag, setFlag] = useState(true);
-  const [locations, setLocations] = useState([
-    {
-      titleView: "titleView",
-      numericField: "1",
-      FirstField: "FirstField",
-      isLarge: true,
-    },
-  ]);
+  const [locations, setLocations] = useState([]);
+
+  const cleanData = () => {
+    setUserData([]);
+    setUser();
+    setAuthenticated(false);
+    setMission(1);
+    setIdProject(1);
+    setMissions([]);
+    setFlag(true);
+    setLocations([]);
+  };
 
   return (
     <DataContext.Provider
       value={{
+        cleanData,
         isAuthenticated,
         setAuthenticated,
         setMissions,

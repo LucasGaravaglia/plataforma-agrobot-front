@@ -10,19 +10,16 @@ export default function PointsPanel({
 }) {
   const { locations } = useContext(DataContext);
   const [overlay, setOverlay] = useState(false);
-  const [order, setOrder] = useState([]);
   const [lats, setLats] = useState([]);
   const [longs, setLongs] = useState([]);
   const [actions, setActions] = useState([]);
   useEffect(() => {
     setLats([]);
     setLongs([]);
-    setOrder([]);
     setActions([]);
     locations.map((location) => {
       setLats((old) => [...old, location.latitude]);
       setLongs((old) => [...old, location.longitude]);
-      setOrder((old) => [...old, location.locationOrder]);
       if (location.actions[0] && location.actions[0].actionType)
         setActions((old) => [
           ...old,
@@ -33,12 +30,10 @@ export default function PointsPanel({
   useEffect(() => {
     setLats([]);
     setLongs([]);
-    setOrder([]);
     setActions([]);
     locations.map((location) => {
       setLats((old) => [...old, location.latitude]);
       setLongs((old) => [...old, location.longitude]);
-      setOrder((old) => [...old, location.locationOrder]);
       if (location.actions[0] && location.actions[0].actionType)
         setActions((old) => [
           ...old,
@@ -64,7 +59,6 @@ export default function PointsPanel({
         </div>
         {!overlay ? (
           <div className="content-InfoMission">
-            <InfoMission titleView="Ordem" content={order} />
             <InfoMission titleView="Latitude" content={lats} />
             <InfoMission titleView="Longitude" content={longs} />
             <InfoMission titleView="Ação" content={actions} />
