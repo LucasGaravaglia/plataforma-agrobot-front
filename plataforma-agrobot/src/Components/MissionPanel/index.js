@@ -42,6 +42,15 @@ export default function MissionPanel() {
     }
   }, [currentScreen, flag, missions]);
 
+  const writeProjectFile = (data) => {
+    const blob = new Blob([data], { type: "text/json" });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "missions.json";
+    link.click();
+  };
+
   return (
     <div id="project-container">
       <div id="panel-container">
@@ -69,7 +78,7 @@ export default function MissionPanel() {
                     });
                   }
                 }
-                console.log(outputJson);
+                writeProjectFile(JSON.stringify(outputJson));
               }}
             />
           </div>

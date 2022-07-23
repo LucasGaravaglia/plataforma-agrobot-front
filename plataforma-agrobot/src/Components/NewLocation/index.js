@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "./style.scss";
@@ -10,7 +10,7 @@ function NewLocation() {
   const { locations, setLocations, idMission } = useContext(DataContext);
   const [overlay, setOverlay] = useState(false);
   const [newLocation, setNewLocation] = useState({});
-  const [idLocation, setIdLocation] = useState(null);
+  const [selectedAction, setSelectedAction] = useState(1);
   function MyComponent() {
     useMapEvents({
       click: (e) => {
@@ -19,14 +19,14 @@ function NewLocation() {
           setNewLocation({
             latitude: lat,
             longitude: lng,
-            locationOrder: 0,
+            locationOrder: 1,
             idMission: idMission,
           });
         } else {
           setNewLocation({
             latitude: lat,
             longitude: lng,
-            locationOrder: 0,
+            locationOrder: 1,
             idMission: idMission,
           });
         }
@@ -42,13 +42,19 @@ function NewLocation() {
         {overlay ? (
           <div className="overlay">
             <SetAction
-              id={idLocation}
               CancelClick={() => setOverlay(false)}
-              ConfirmClick={async () => {
-                api.post("location", newLocation).then((e) => {
-                  setIdLocation(e.data);
+              ConfirmClick={(selectedAction) => {
+                console.log(newLocation);
+                api.post("location", newLocation).then((data) => {
+                  api.post("action", {
+                    idActionType: selectedAction,
+                    idLocation: data.data,
+                  });
+                  api.get(`locations=${idMission}`).then((response) => {
+                    console.log(response.data);
+                    setLocations(response.data);
+                  });
                 });
-                setLocations((await api.get(`locations=${idMission}`)).data);
                 setOverlay(false);
               }}
             />

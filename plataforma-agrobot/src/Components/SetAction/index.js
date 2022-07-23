@@ -44,12 +44,8 @@ export default function SetAction({ ConfirmClick, CancelClick, id }) {
           <div id="container-bottom-button">
             <div
               id="box-bottom-button"
-              onClick={async () => {
-                ConfirmClick();
-                await api.post("action", {
-                  idActionType: selectedAction,
-                  idLocation: id,
-                });
+              onClick={() => {
+                ConfirmClick(selectedAction);
               }}
             >
               <h1 id="title-button">Ok</h1>
