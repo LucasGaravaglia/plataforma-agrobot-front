@@ -67,7 +67,7 @@ function NewLocation() {
           >
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+              url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             />
             {locations.map((i) => (
               <Marker key={i.id} position={[i.latitude, i.longitude]} />
