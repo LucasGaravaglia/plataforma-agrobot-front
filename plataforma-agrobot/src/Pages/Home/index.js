@@ -11,6 +11,8 @@ import { TargetScreenContext } from "../../Context/TargetScreen";
 import { Login } from "../../Components/Login";
 import { DataContext } from "../../Context/DataContext";
 
+import Location from "../../Components/NewLocation";
+
 export default function Home() {
   const { currentScreen } = useContext(TargetScreenContext);
   const { isAuthenticated } = useContext(DataContext);
@@ -24,14 +26,15 @@ export default function Home() {
 
   return (
     <div id="container">
-      {!isAuthenticated ? (
+      {/* {!isAuthenticated ? (
         <Login />
       ) : (
         <>
           <DrawNavigation />
           {SelectScreen()}
         </>
-      )}
+      )} */}
+      <Location />
     </div>
   );
 }

@@ -1,8 +1,17 @@
-import { useContext, useEffect, useState } from "react";
-
-import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import { useContext, useState } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  useMapEvents,
+  FeatureGroup,
+} from "react-leaflet";
 import "./style.scss";
 import { DataContext } from "../../Context/DataContext";
+import { EditControl } from "react-leaflet-draw";
+import "leaflet/dist/leaflet.css";
+import "leaflet-draw/dist/leaflet.draw.css";
+
 import api from "../../services/api";
 import SetAction from "../SetAction";
 
@@ -64,11 +73,25 @@ function NewLocation() {
             center={[-25.5526, -54.5877]}
             zoom={13}
             scrollWheelZoom={true}
+            style={{ width: "100%", backgroundColor: "#f0f" }}
           >
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             />
+            <FeatureGroup>
+              <EditControl
+                position="bottomright"
+                draw={{
+                  circle: false,
+                  circlemarker: false,
+                  marker: true,
+                  polygon: true,
+                  polyline: false,
+                  rectangle: false,
+                }}
+              />
+            </FeatureGroup>
             {locations.map((i) => (
               <Marker key={i.id} position={[i.latitude, i.longitude]} />
             ))}
