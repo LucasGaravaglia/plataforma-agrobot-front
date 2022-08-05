@@ -15,6 +15,8 @@ import "leaflet-draw/dist/leaflet.draw.css";
 import api from "../../services/api";
 import SetAction from "../SetAction";
 
+import { iconPerson } from "../CustomIcon";
+
 const globalDecimal = 7;
 
 function NewLocation() {
@@ -26,7 +28,7 @@ function NewLocation() {
   const getAngularCoefficient = (p1, p2) => {
     let delta_y = p2.lat - p1.lat;
     let delta_x = p2.lng - p1.lng;
-    if (delta_x == 0) return Number.POSITIVE_INFINITY;
+    if (delta_x === 0) return Number.POSITIVE_INFINITY;
     return (delta_y / delta_x).toFixed(globalDecimal);
   };
 
@@ -35,7 +37,7 @@ function NewLocation() {
   };
 
   const getLinearCoefficient = (p1, angularCoefficient) => {
-    if (angularCoefficient == Number.POSITIVE_INFINITY)
+    if (angularCoefficient === Number.POSITIVE_INFINITY)
       return p1.lat.toFixed(globalDecimal);
     return (p1.lat - angularCoefficient * p1.lng).toFixed(globalDecimal);
   };
@@ -57,7 +59,7 @@ function NewLocation() {
       diff =
         Math.abs(difference(lineTarget.p1, lineTarget.p2)[1]) /
         (numberOfPoints - 1);
-      if (lineTarget.p2.longitude > lineTarget.p1.longitude) {
+      if (lineTarget.p2.lng > lineTarget.p1.lng) {
         longitude = longitude + diff;
       } else {
         longitude = longitude - diff;
@@ -85,10 +87,11 @@ function NewLocation() {
       }
     );
     console.log(lines);
+    return lines;
   };
 
   const _onCreated = (event) => {
-    createBetweenLines(event.layer.getLatLngs()[0]);
+    setLocations(createBetweenLines(event.layer.getLatLngs()[0]));
   };
   const _onDeleted = (event) => {
     console.log(event);
@@ -151,7 +154,7 @@ function NewLocation() {
             scrollWheelZoom={true}
           >
             <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+              attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
             />
             <FeatureGroup>
@@ -171,7 +174,7 @@ function NewLocation() {
               />
             </FeatureGroup>
             {locations.map((i) => (
-              <Marker key={i.id} position={[i.latitude, i.longitude]} />
+              <Marker key={i.id} position={[i.lat, i.lng]} />
             ))}
             {/* <MyComponent /> */}
           </MapContainer>
