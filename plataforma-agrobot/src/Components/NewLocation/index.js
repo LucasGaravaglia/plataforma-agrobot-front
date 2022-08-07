@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import {
   MapContainer,
   TileLayer,
@@ -8,16 +9,9 @@ import {
 } from "react-leaflet";
 import "./style.scss";
 import { DataContext } from "../../Context/DataContext";
-import { EditControl } from "react-leaflet-draw";
-
-import "leaflet/dist/leaflet.css";
-import "leaflet-draw/dist/leaflet.draw.css";
-
 import api from "../../services/api";
 import SetAction from "../SetAction";
-
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
+import { EditControl } from "react-leaflet-draw";
 
 const globalDecimal = 7;
 
@@ -94,7 +88,8 @@ function NewLocation() {
 
   const _onCreated = (event) => {
     console.log(event);
-    setLocations(createBetweenLines(event.layer.getLatLngs()[0]));
+    if (event.layerType === "polyline")
+      setLocations(createBetweenLines(event.layer.getLatLngs()[0]));
   };
   const _onDeleted = (event) => {
     console.log(event);
@@ -176,6 +171,7 @@ function NewLocation() {
                 }}
               />
             </FeatureGroup>
+            <Marker position={[0, 0]} />
             {locations.map((i) => (
               <Marker key={i.id} position={[i.lat, i.lng]} />
             ))}
