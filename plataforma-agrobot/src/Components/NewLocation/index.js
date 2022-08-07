@@ -14,6 +14,7 @@ import SetAction from "../SetAction";
 import { EditControl } from "react-leaflet-draw";
 
 const globalDecimal = 7;
+const sizeSprayRod = 2; // in meters
 
 function NewLocation() {
   const { locations, setLocations, idMission } = useContext(DataContext);
@@ -82,14 +83,28 @@ function NewLocation() {
         lines.push(d);
       }
     );
-    console.log(lines);
     return lines;
+  };
+
+  const getLineBetweenPoints = (Lines) => {
+    let newLines = [];
+    let max = Number.MAX_VALUE;
+    Lines.sort((a, b) => {
+      return a.lat - b.lat;
+    });
+    console.log(Lines);
+    for (let i = 0; i < Lines.length; i++) {
+      max = Number.MAX_VALUE;
+      for (let j = i; j < Lines.length; j++) {}
+    }
   };
 
   const _onCreated = (event) => {
     console.log(event);
-    if (event.layerType === "polyline")
-      setLocations(createBetweenLines(event.layer.getLatLngs()[0]));
+    if (event.layerType === "polygon")
+      setLocations(
+        getLineBetweenPoints(createBetweenLines(event.layer.getLatLngs()[0]))
+      );
   };
   const _onDeleted = (event) => {
     console.log(event);
@@ -171,7 +186,6 @@ function NewLocation() {
                 }}
               />
             </FeatureGroup>
-            <Marker position={[0, 0]} />
             {locations.map((i) => (
               <Marker key={i.id} position={[i.lat, i.lng]} />
             ))}
