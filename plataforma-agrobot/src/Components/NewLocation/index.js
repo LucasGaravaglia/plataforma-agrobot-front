@@ -9,13 +9,15 @@ import {
 import "./style.scss";
 import { DataContext } from "../../Context/DataContext";
 import { EditControl } from "react-leaflet-draw";
+
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 
 import api from "../../services/api";
 import SetAction from "../SetAction";
 
-import { iconPerson } from "../CustomIcon";
+import icon from "leaflet/dist/images/marker-icon.png";
+import iconShadow from "leaflet/dist/images/marker-shadow.png";
 
 const globalDecimal = 7;
 
@@ -91,6 +93,7 @@ function NewLocation() {
   };
 
   const _onCreated = (event) => {
+    console.log(event);
     setLocations(createBetweenLines(event.layer.getLatLngs()[0]));
   };
   const _onDeleted = (event) => {
