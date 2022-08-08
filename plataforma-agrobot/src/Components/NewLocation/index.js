@@ -88,23 +88,81 @@ function NewLocation() {
 
   const getLineBetweenPoints = (Lines) => {
     let newLines = [];
-    let max = Number.MAX_VALUE;
+    let i = 0;
+    let min = Number.MAX_VALUE;
+    let idxMin = 0;
+    let idxs = [];
     Lines.sort((a, b) => {
       return a.lat - b.lat;
     });
-    console.log(Lines);
-    for (let i = 0; i < Lines.length; i++) {
-      max = Number.MAX_VALUE;
-      for (let j = i; j < Lines.length; j++) {}
+    while (idxs.length - 1 < Lines.length - 3) {
+      idxs.push(i);
+      min = Number.MAX_VALUE;
+      for (let j = 0; j < Lines.length - 1; j++) {
+        if (idxs.includes(j)) continue;
+        if (getAngularCoefficient(Lines[i], Lines[j]) < min) {
+          min = getAngularCoefficient(Lines[i], Lines[j]);
+          idxMin = j;
+        }
+      }
+      newLines.push(Lines[i]);
+      getPointsBetween({ p1: Lines[i], p2: Lines[idxMin] }, 7).map((d) => {
+        if (
+          d.lat == Number.POSITIVE_INFINITY ||
+          d.lat == Number.NEGATIVE_INFINITY
+        )
+          return;
+        newLines.push(d);
+      });
+      i = idxMin;
     }
+    console.log(newLines);
+    return newLines;
   };
 
   const _onCreated = (event) => {
-    console.log(event);
-    if (event.layerType === "polygon")
-      setLocations(
-        getLineBetweenPoints(createBetweenLines(event.layer.getLatLngs()[0]))
+    if (event.layerType === "polygon") {
+      let allPoints = getLineBetweenPoints(
+        createBetweenLines(event.layer.getLatLngs()[0])
       );
+      allPoints.map((d) => {
+        d.latitude = d.lat;
+        d.longitude = d.lng;
+        d.locationOrder = 1;
+        d.idMission = idMission;
+      });
+      // console.log(allPoints);
+      allPoints.map((d) => {
+        api.post("location", d).then((data) => {
+          api.post("action", {
+            idActionType: 1,
+            idLocation: data.data,
+          });
+        });
+        // api.get(`locations=${idMission}`).then((response) => {
+        //   setLocations([...locations, response.data]);
+        // });
+      });
+    }
+    if (event.layerType === "marker") {
+      const { lat, lng } = event.layer.getLatLng();
+      if (locations.length > 0) {
+        setNewLocation({
+          latitude: lat,
+          longitude: lng,
+          locationOrder: 1,
+          idMission: idMission,
+        });
+      } else {
+        setNewLocation({
+          latitude: lat,
+          longitude: lng,
+          locationOrder: 1,
+          idMission: idMission,
+        });
+      }
+      setOverlay(true);
+    }
   };
   const _onDeleted = (event) => {
     console.log(event);
@@ -112,30 +170,6 @@ function NewLocation() {
   const _onEditPath = (event) => {
     console.log(event);
   };
-  // function MyComponent() {
-  //   useMapEvents({
-  //     click: (e) => {
-  //       const { lat, lng } = e.latlng;
-  //       if (locations.length > 0) {
-  //         setNewLocation({
-  //           latitude: lat,
-  //           longitude: lng,
-  //           locationOrder: 1,
-  //           idMission: idMission,
-  //         });
-  //       } else {
-  //         setNewLocation({
-  //           latitude: lat,
-  //           longitude: lng,
-  //           locationOrder: 1,
-  //           idMission: idMission,
-  //         });
-  //       }
-  //       setOverlay(true);
-  //     },
-  //   });
-  //   return null;
-  // }
 
   return (
     <>
@@ -153,7 +187,7 @@ function NewLocation() {
                   });
                   api.get(`locations=${idMission}`).then((response) => {
                     console.log(response.data);
-                    setLocations(response.data);
+                    setLocations([...locations, response.data]);
                   });
                 });
                 setOverlay(false);
@@ -187,9 +221,8 @@ function NewLocation() {
               />
             </FeatureGroup>
             {locations.map((i) => (
-              <Marker key={i.id} position={[i.lat, i.lng]} />
+              <Marker key={i.id} position={[i.latitude, i.longitude]} />
             ))}
-            {/* <MyComponent /> */}
           </MapContainer>
         )}
       </div>

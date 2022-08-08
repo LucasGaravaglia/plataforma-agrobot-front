@@ -26,15 +26,15 @@ export default function Home() {
 
   return (
     <div id="container">
-      {/* {!isAuthenticated ? (
+      {!isAuthenticated ? (
         <Login />
       ) : (
         <>
           <DrawNavigation />
           {SelectScreen()}
         </>
-      )} */}
-      <Location />
+      )}
+      {/* <Location /> */}
     </div>
   );
 }

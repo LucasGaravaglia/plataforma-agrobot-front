@@ -13,6 +13,7 @@ function ViewInfo({
     <>
       <div
         id="container-box"
+        style={{ width: "250px" }}
         onMouseEnter={() => {
           setHoverIcon(true);
         }}
@@ -24,10 +25,10 @@ function ViewInfo({
         }`}
         onClick={() => onClick()}
       >
-        <div id="box-top">
+        <div id="box-top" style={{ width: "250px" }}>
           <h1 id="title-viewInfo">{titleView}</h1>
         </div>
-        <div id="box-bottom">
+        <div id="box-bottom" style={{ width: "250px" }}>
           {isLarge ? (
             <>
               <div id="content-1">

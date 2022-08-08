@@ -32,6 +32,7 @@ export default function PointsPanel({
     setLongs([]);
     setActions([]);
     locations.map((location) => {
+      console.log(location);
       setLats((old) => [...old, location.latitude]);
       setLongs((old) => [...old, location.longitude]);
       if (location.actions[0] && location.actions[0].actionType)
